@@ -1,27 +1,27 @@
 // src/Cars.jsx
 
 import React from 'react';
-
+import carsContext from './context/carsContext';
 
 import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
 import carYellow from './images/carYellow.jpeg';
 
-class Cars extends React.Component () {
-  render() {
-    const { red, blue, yellow, moveCar } = this.context;
+function Cars () {
     return (
+      <carsContext.Consumer>
+        { ({red, blue, yellow, moveCar}) => (
       <div>
         <div>
           <img
             className={red ? 'car-right' : 'car-left'}
             src={carRed}
             alt="red car"
-          />
+            />
           <button
             onClick={() => moveCar('red', !red)}
             type="button"
-          >
+            >
             Move
           </button>
         </div>
@@ -30,11 +30,11 @@ class Cars extends React.Component () {
             className={blue ? 'car-right' : 'car-left'}
             src={carBlue}
             alt="blue car"
-          />
+            />
           <button
             onClick={() => moveCar('blue', !blue)}
             type="button"
-          >
+            >
             Move
           </button>
         </div>
@@ -43,19 +43,22 @@ class Cars extends React.Component () {
             className={yellow ? 'car-right' : 'car-left'}
             src={carYellow}
             alt="yellow car"
-          />
+            />
           <button
             onClick={() => moveCar('yellow', !yellow)}
             type="button"
-          >
+            >
             Move
           </button>
         </div>
-      </div>
+      </div>)
+      }
+      </carsContext.Consumer>
 
     );
   }
-}
 
+
+Cars.contextType = carsContext;
 
 export default Cars;
