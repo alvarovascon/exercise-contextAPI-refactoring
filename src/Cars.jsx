@@ -1,7 +1,7 @@
 // src/Cars.jsx
 
 import React from 'react';
-import carsContext from './context/carsContext';
+
 
 import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
@@ -9,10 +9,9 @@ import carYellow from './images/carYellow.jpeg';
 
 class Cars extends React.Component () {
   render() {
-    //const { red, blue, yellow, moveCar } = this.context;
+    const { red, blue, yellow, moveCar } = this.context;
     return (
-      <carsContext.consumer>
-      {({ red, blue, yellow, moveCar }) => (<div>
+      <div>
         <div>
           <img
             className={red ? 'car-right' : 'car-left'}
@@ -52,12 +51,11 @@ class Cars extends React.Component () {
             Move
           </button>
         </div>
-      </div>)}
-      </carsContext.consumer>
+      </div>
+
     );
   }
 }
 
-Cars.contextType = carsContext;
 
 export default Cars;
